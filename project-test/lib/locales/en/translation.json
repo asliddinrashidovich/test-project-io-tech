@@ -1,3 +1,19 @@
 {
-    "name": "ism"
+    "home": "Home",
+    "about": "About us",
+    "blog": "Blog",
+    "contact": "Contact us",
+    "team": "Our Team",
+    "bookAppintment": "Book Appointment",
+    "readMore": "Read More",
+    "teamText": "We are very pleased to work with this company. Professional approach, clear deadlines and excellent results. We will cooperate again in the future.",
+    "clientsText": "Our clients range from individual investors, to local, international as well as fortune 500 companies",
+    "clientsHeader": "What our clients are saying",
+    "contacts": "Contacts",
+    "strategy": "Our Strategy",
+    "advantages": "Our Advantages",
+    "responsibility": "Social Responsibility",
+    "ourServices": "Our Services",
+    "submit": "Submit",
+    "services": "Services"
 }

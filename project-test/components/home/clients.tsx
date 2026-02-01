@@ -7,39 +7,72 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useAxios } from "@/hooks/useAxios";
+import { useTranslation } from "react-i18next";
 
 type Client = {
   data: {
     id: number;
     name: string;
-    testimonial_ar: string;
-    testimonial_en: string;
+    role: string;
+    testimonial_en: {
+      children: {
+        text: string;
+      }[];
+    }[];
+    testimonial_ar: {
+      children: {
+        text: string;
+      }[];
+    }[];
     logo: {
       id: number;
       url: string;
     }[];
   }[];
 };
+
+interface CorrectLang {
+  testimonial_en: {
+    children: {
+      text: string;
+    }[];
+  }[];
+  testimonial_ar: {
+    children: {
+      text: string;
+    }[];
+  }[];
+}
+
 function Clients() {
   const swiperRef = useRef<SwiperType | null>(null);
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const { data, loading, error, refetch } = useAxios<Client>({
     url: "/api/clients?populate=*",
   });
 
-  const totalSlides = data?.data.length || 0;
+  const lang = localStorage.getItem("app_language") || "en";
 
+  function getCorrectLang(ser: CorrectLang) {
+    if (lang === "en") {
+      return [ser.testimonial_en[0].children[0].text];
+    } else {
+      return [ser.testimonial_ar[0].children[0].text];
+    }
+  }
+
+  const totalSlides = data?.data.length || 0;
   return (
     <div className="py-25 px-5 md:px-10 bg-[#4B2615]">
       <div className="max-w-325 mx-auto">
         <div className="max-w-150 mb-10">
           <h2 className="text-white font-semibold text-[40px] leading-13 mb-7">
-            What our clients are saying
+            {t("clientsHeader")}
           </h2>
           <p className="font-normal text-white opacity-70 text-[18px] leading-[130%]">
-            Our clients range from individual investors, to local, international
-            as well as fortune 500 companies.
+            {t("clientsText")}
           </p>
         </div>
 
@@ -50,30 +83,37 @@ function Clients() {
             onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
             className="space-y-5"
           >
-            {data?.data?.map((slide, index) => (
-              <SwiperSlide key={index}>
-                <div className="grid gap-12 grid-cols-3">
-                  <div className="flex-1 h-80 col-span-1">
-                    <img src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${slide.logo[0].url}`} alt="user" className="object-cover w-full h-full" />
-                  </div>
-                  <div className="flex flex-col justify-between col-span-2">
-                    <p className="text-[24px] leading-10 font-normal opacity-80 text-white">
-                      "{slide.testimonial_en}"
-                    </p>
-                    <div className="flex items-end justify-between mt-4">
-                      <div>
-                        <h4 className="text-white font-semibold text-[24px] mb-1">
-                          Mohammad Saif
-                        </h4>
-                        <p className="text-white text-[16px] opacity-80">
-                          CEO/Company
-                        </p>
+            {data?.data?.map((slide, index) => {
+              const [text, role] = getCorrectLang(slide);
+              return (
+                <SwiperSlide key={index}>
+                  <div className="grid gap-12 grid-cols-3">
+                    <div className="flex-1 h-80 col-span-3 min-[800px]:col-span-1">
+                      <img
+                        src={`${slide.logo[0].url}`}
+                        alt="user"
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="flex flex-col justify-between col-span-3 min-[800px]:col-span-2">
+                      <p className="text-[24px] leading-10 font-normal opacity-80 text-white">
+                        {text}
+                      </p>
+                      <div className="flex items-end justify-between mt-4">
+                        <div>
+                          <h4 className="text-white font-semibold text-[24px] mb-1">
+                            {slide.name}
+                          </h4>
+                          <p className="text-white text-[16px] opacity-80">
+                            {slide.role}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
 
           <div className="absolute z-60 bottom-0 -translate-y-1/2 right-0 flex gap-10">

@@ -1,21 +1,17 @@
+import Link from "next/link"
+
 function ServicesDropdown() {
   return (
     <div className="p-10 grid grid-cols-4 gap-10">
       <ul className="flex  gap-4 flex-col">
         <li>
-          <a href="#" className="text-[16px] leading-7 font-medium">Legal Consultant Services</a>
+          <Link href={`/services/2`} className="text-[16px] leading-7 font-medium">Innovative Digital Solutions</Link>
         </li>
         <li>
-          <a href="#" className="text-[16px] leading-7 font-medium">Foreign Investment Services</a>
+          <Link href={`/services/2`} className="text-[16px] leading-7 font-medium">Building the Future Together</Link>
         </li>
         <li>
-          <a href="#" className="text-[16px] leading-7 font-medium">Contracts</a>
-        </li>
-        <li>
-          <a href="#" className="text-[16px] leading-7 font-medium">Notarization</a>
-        </li>
-        <li>
-          <a href="#" className="text-[16px] leading-7 font-medium">Insurance</a>
+          <Link href={`/services/2`} className="text-[16px] leading-7 font-medium">Fast and convenient</Link>
         </li>
       </ul>
       <ul className="flex gap-4 flex-col">

@@ -5,6 +5,7 @@ import Header from "@/components/home/header";
 import Hero from "@/components/home/hero";
 import Footer from "@/components/footer";
 import Providers from "../providers/I18nProvider";
+import { Toaster } from "react-hot-toast";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -24,9 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable} antialiased`}>
+        <Toaster position="top-right" reverseOrder={false} />
         <Header />
         <Hero />
-         <Providers>{children}</Providers>
+        <Providers>{children}</Providers>
         <Footer />
       </body>
     </html>

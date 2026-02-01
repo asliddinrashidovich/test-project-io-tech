@@ -9,16 +9,24 @@ const options = [
   { value: 'ar', label: 'AR' },
 ];
 
+const LANG_KEY = 'app_language';
+
 export default function LanguageSwitcher() {
   const [lang, setLang] = useState('en');
 
   useEffect(() => {
-    setLang(i18n.language || 'en');
+    const savedLang = localStorage.getItem(LANG_KEY);
+
+    const initialLang = savedLang || i18n.language || 'en';
+
+    setLang(initialLang);
+    i18n.changeLanguage(initialLang);
   }, []);
 
   const handleChange = (value: string) => {
     setLang(value);
     i18n.changeLanguage(value);
+    localStorage.setItem(LANG_KEY, value);
   };
 
   return (

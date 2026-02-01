@@ -2,9 +2,9 @@ import Services from "@/components/services/services"
 
 function Page() {
   return (
-    <>
-      <Services/>    
-    </>
+    <div>
+      <Services/>  
+    </div>
   )
 }
 
