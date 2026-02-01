@@ -1,31 +1,31 @@
 {
   "kind": "collectionType",
-  "collectionName": "heroes",
+  "collectionName": "team_members",
   "info": {
-    "singularName": "hero",
-    "pluralName": "heroes",
-    "displayName": "Hero"
+    "singularName": "team-member",
+    "pluralName": "team-members",
+    "displayName": "Team members"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "title_en": {
+    "name_en": {
       "type": "string"
     },
-    "title_ar": {
+    "name_ar": {
       "type": "string"
     },
-    "text_en": {
-      "type": "blocks"
+    "role_en": {
+      "type": "string"
     },
-    "text_ar": {
-      "type": "blocks"
+    "role_ar": {
+      "type": "string"
     },
-    "media": {
+    "photo": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "allowedTypes": [
         "images",
         "files",

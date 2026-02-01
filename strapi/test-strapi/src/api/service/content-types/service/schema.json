@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "heroes",
+  "collectionName": "services",
   "info": {
-    "singularName": "hero",
-    "pluralName": "heroes",
-    "displayName": "Hero"
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Services"
   },
   "options": {
     "draftAndPublish": true
@@ -17,13 +17,17 @@
     "title_ar": {
       "type": "string"
     },
-    "text_en": {
+    "description_en": {
       "type": "blocks"
     },
-    "text_ar": {
+    "description_ar": {
       "type": "blocks"
     },
-    "media": {
+    "slug": {
+      "type": "uid",
+      "targetField": "title_en"
+    },
+    "image": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [

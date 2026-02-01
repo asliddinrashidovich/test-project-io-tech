@@ -1,29 +1,20 @@
 {
   "kind": "collectionType",
-  "collectionName": "heroes",
+  "collectionName": "clients",
   "info": {
-    "singularName": "hero",
-    "pluralName": "heroes",
-    "displayName": "Hero"
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "Clients"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "title_en": {
+    "name": {
       "type": "string"
     },
-    "title_ar": {
-      "type": "string"
-    },
-    "text_en": {
-      "type": "blocks"
-    },
-    "text_ar": {
-      "type": "blocks"
-    },
-    "media": {
+    "logo": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [
@@ -32,6 +23,15 @@
         "videos",
         "audios"
       ]
+    },
+    "testimonial_en": {
+      "type": "blocks"
+    },
+    "testimonial_ar": {
+      "type": "blocks"
+    },
+    "role": {
+      "type": "string"
     }
   }
 }

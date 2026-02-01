@@ -1,10 +1,10 @@
 {
-  "kind": "collectionType",
-  "collectionName": "heroes",
+  "kind": "singleType",
+  "collectionName": "hero_sections",
   "info": {
-    "singularName": "hero",
-    "pluralName": "heroes",
-    "displayName": "Hero"
+    "singularName": "hero-section",
+    "pluralName": "hero-sections",
+    "displayName": "Hero Section"
   },
   "options": {
     "draftAndPublish": true
@@ -17,12 +17,6 @@
     "title_ar": {
       "type": "string"
     },
-    "text_en": {
-      "type": "blocks"
-    },
-    "text_ar": {
-      "type": "blocks"
-    },
     "media": {
       "type": "media",
       "multiple": true,
@@ -32,6 +26,12 @@
         "videos",
         "audios"
       ]
+    },
+    "text_en": {
+      "type": "blocks"
+    },
+    "text_ar": {
+      "type": "blocks"
     }
   }
 }
