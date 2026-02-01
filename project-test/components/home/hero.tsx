@@ -9,7 +9,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useAxios } from "@/hooks/useAxios";
 import Image from "next/image";
 import HeroLoader from "./heroLoader";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
 type Services = {
@@ -61,11 +61,11 @@ interface CorrectLang {
 
 function Hero() {
   const router = useRouter();
-  const {t} = useTranslation()
+  const {t, i18n} = useTranslation()
   const { data, loading, error, refetch } = useAxios<Services>({
     url: "/api/services?populate=*",
   });
-  const lang = localStorage.getItem("app_language") || "en";
+  const lang = i18n.language
 
   function getCorrectLang(ser: CorrectLang) {
     if (lang === "en") {

@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useAxios } from "@/hooks/useAxios";
 import { useTranslation } from "react-i18next";
+import { useParams } from "next/navigation";
 
 type Client = {
   data: {
@@ -46,14 +47,15 @@ interface CorrectLang {
 
 function Clients() {
   const swiperRef = useRef<SwiperType | null>(null);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const { data, loading, error, refetch } = useAxios<Client>({
     url: "/api/clients?populate=*",
   });
 
-  const lang = localStorage.getItem("app_language") || "en";
+  
+  const lang = i18n.language
 
   function getCorrectLang(ser: CorrectLang) {
     if (lang === "en") {

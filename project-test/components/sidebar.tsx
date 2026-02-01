@@ -61,7 +61,7 @@ function Sidebar({ setOpenSideBar, openSidebar }: SidebarProps) {
           <li onClick={() => setOpenSideBar(false)} className=" cursor-pointer relative  inline-block group">
             <Link
               className={`p-1.5 font-normal translate-all duration-300  text-[16px] group-hover:text-[#3E8EF4] leading-[150%] ${getTextColor("/about")}`}
-              href={"/about"}
+              href={"/"}
             >
               {t("about")}
             </Link>

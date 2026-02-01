@@ -13,6 +13,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import TeamLoader from "./teamLoader";
 import { useTranslation } from "react-i18next";
+import { useParams } from "next/navigation";
 
 type User = {
   data: {
@@ -34,15 +35,15 @@ interface CorrectLang {
 }
 
 function Team() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { data, loading, error, refetch } = useAxios<User>({
     url: "/api/team-members?populate=*",
   });
 
-  const lang = localStorage.getItem("app_language") || "en";
+  const lang = i18n.language;
 
   function getCorrectLang(ser: CorrectLang) {
-    if (lang === "en") {
+    if (lang == "en") {
       return [ser.role_en];
     } else {
       return [ser.role_ar];
@@ -84,7 +85,7 @@ function Team() {
               className="mySwiper flex gap-7.5 items-center justify-center "
             >
               {data?.data?.map((item) => {
-                const [role] = getCorrectLang(item)
+                const [role] = getCorrectLang(item);
                 return (
                   <SwiperSlide
                     key={item.id}
